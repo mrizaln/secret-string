@@ -1,12 +1,11 @@
 from conan import ConanFile
+from conan.tools.cmake import cmake_layout
+
 
 class Recipe(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeToolchain", "CMakeDeps", "VirtualRunEnv"
+    requires = ["fmt/10.2.1", "range-v3/0.12.0"]
 
     def layout(self):
-        self.folders.generators = "conan"
-
-    def requirements(self):
-        self.requires("fmt/10.1.1")
-        self.requires("range-v3/0.12.0")
+        cmake_layout(self)
